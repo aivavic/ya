@@ -1,0 +1,19 @@
+/**
+ * Created by viktor on 30.06.2017.
+ */
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const CHECKOUT_REQUEST = 'CHECKOUT_REQUEST'
+export const CHECKOUT_SUCCESS = 'CHECKOUT_SUCCESS'
+export const CHECKOUT_FAILURE = 'CHECKOUT_FAILURE'
+export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS'
+// Articles
+export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES'
+export const RECEIVE_ARTICLE_BY_SLUG = 'RECEIVE_ARTICLE_BY_SLUG'
+
+// Spinner
+export const START_SPINNER = 'START_SPINNER'
+export const STOP_SPINNER = 'STOP_SPINNER'
+
+// User
+export const SIGNUP_USER = 'SIGNUP_USER'
+export const SIGNUP_ERROR = 'SIGNUP_ERROR'
