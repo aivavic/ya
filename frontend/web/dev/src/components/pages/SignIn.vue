@@ -3,17 +3,17 @@
     <carousel :list="carousel"></carousel>
     <form>
       <div class="form-group">
-        <label for="email">Email address:</label>
-        <input type="email" class="form-control" id="email">
+        <label for="email" >Email address:</label>
+        <input type="email" class="form-control" id="email" v-model.trim="user.email">
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd">
+        <input type="password" class="form-control" id="pwd" v-model.trim="user.password">
       </div>
       <div class="checkbox">
-        <label><input type="checkbox"> Remember me</label>
+        <label><input type="checkbox" v-model.trim="user.remember"> Remember me</label>
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="btn btn-default" @click.prevent="submit">Submit</button>
     </form>
     <router-link to="/sign-up"><p>Registration</p></router-link>
   </div>
@@ -21,9 +21,11 @@
 
 <script>
 import Carousel from '@/components/common/Carousel'
+import Spinner from '@/components/common/spinner'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'hello',
+  name: 'signIn',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -31,11 +33,26 @@ export default {
         header: 'Shaky Typography Toolkit',
         description: 'Promotes any message with dynamic text and modern feel'
       },
-      valid: {}
+      valid: {},
+      user: {
+        email: 'webmaster@example.com',
+        password: 'webmaster',
+        remember: false
+      }
+    }
+  },
+  computed: mapGetters({
+    spinner: 'getSpinnerStatus',
+    storage: 'getStorageUrl'
+  }),
+  methods: {
+    submit: function () {
+      this.$store.dispatch('signIn', this.user)
     }
   },
   components: {
-    'carousel': Carousel
+    'carousel': Carousel,
+    'spinner': Spinner
   }
 }
 </script>

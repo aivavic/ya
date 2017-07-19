@@ -15,6 +15,7 @@ $config = [
         'user'    => [
             'class'         => 'yii\web\User',
             'identityClass' => 'api\models\ApiUserIdentity',
+            'enableSession' => false
         ]
     ],
 ];

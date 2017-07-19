@@ -17,3 +17,6 @@ export const STOP_SPINNER = 'STOP_SPINNER'
 // User
 export const SIGNUP_USER = 'SIGNUP_USER'
 export const SIGNUP_ERROR = 'SIGNUP_ERROR'
+export const SIGNUP_STATUS = 'SIGNUP_STATUS'
+export const USER_TOKEN = 'USER_TOKEN'
+export const USER_IDENTITY = 'USER_IDENTITY'

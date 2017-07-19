@@ -1,5 +1,6 @@
 <template>
   <div class="sign-in">
+    <spinner v-if='spinner'></spinner>
     <carousel :list="carousel"></carousel>
 
     <form>
@@ -30,7 +31,8 @@
 
 <script>
 import Carousel from '@/components/common/Carousel'
-import axios from 'axios'
+import Spinner from '@/components/common/spinner'
+import { mapGetters } from 'vuex'
 export default {
   name: 'SignUp',
   data () {
@@ -41,35 +43,26 @@ export default {
         description: 'Promotes any message with dynamic text and modern feel'
       },
       auth: {
-        username: '',
-        email: '',
-        pwd: '',
-        rpwd: ''
+        username: 'aivavic',
+        email: 'aivavic@aivavic.com',
+        pwd: 'aivavic',
+        rpwd: 'aivavic'
       },
       tokens: []
     }
   },
-  created () {
- //   axios.get(this.$apiBaseUrl + '/oauth/personal-access-tokens')
- //     .then(response => {
- //       this.tokens = response.data
- //     })
-    var params = new URLSearchParams()
-    params.append('Content-Type', 'application/x-www-form-urlencoded')
-    params.append('Authorization', 'Bearer eyJ0eXAiO~~~.eyJpc3MiO~~~.MSzBigimzWrc9DlZZduh~~~')
-    axios.post('http://127.0.0.1:8000/api/v1/auth/app', params)
-      .then(response => {
-        console.log(response.data)
-      })
-  },
+  computed: mapGetters({
+    spinner: 'getSpinnerStatus',
+    storage: 'getStorageUrl'
+  }),
   methods: {
     submit: function () {
       this.$store.dispatch('signUp', this.auth)
-      console.log(this.auth)
     }
   },
   components: {
-    'carousel': Carousel
+    'carousel': Carousel,
+    'spinner': Spinner
   }
 }
 </script>

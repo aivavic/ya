@@ -5,6 +5,8 @@ namespace api\controllers;
 use Yii;
 use api\models\Article;
 use yii\data\ActiveDataProvider;
+use yii\filters\auth\HttpBasicAuth;
+use yii\filters\auth\HttpBearerAuth;
 use yii\rest\ActiveController;
 use yii\web\ForbiddenHttpException;
 use yii\web\HttpException;
@@ -13,7 +15,7 @@ use yii\web\HttpException;
  * Class ArticleController
  * @author Eugene Terentev <eugene@terentev.net>
  */
-class ArticleController extends ActiveController
+class ArticleController extends ApiController
 {
     /**
      * @var string
@@ -27,6 +29,13 @@ class ArticleController extends ActiveController
         'class'              => 'yii\rest\Serializer',
         'collectionEnvelope' => 'items'
     ];
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['authenticator']['except'] = ['test'];
+        return $behaviors;
+    }
 
     /**
      * @inheritdoc
@@ -83,5 +92,12 @@ class ArticleController extends ActiveController
             throw new HttpException(404);
         }        
         return $model;
+    }
+
+    public function actionTest()
+    {
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+        $headers = Yii::$app->request->headers;
+        return $headers->get('Authorization');
     }
 }

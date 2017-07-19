@@ -10,7 +10,7 @@ class User extends \common\models\User
 
     public function fields()
     {
-        return ['id', 'username', 'created_at', 'domain_id'];
+        return ['id', 'username', 'created_at'];
     }
 
     public function extraFields()

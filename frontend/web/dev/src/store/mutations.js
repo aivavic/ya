@@ -9,5 +9,13 @@ export default {
   },
   [types.STOP_SPINNER] (state) {
     state.spinner = false
+  },
+  [types.USER_TOKEN] (state, {token}) {
+    state.user_state.token = token
+  },
+  [types.USER_IDENTITY] (state, {user}) {
+    state.user_state.identity.id = user.id
+    state.user_state.identity.email = user.email
+    state.user_state.identity.username = user.username
   }
 }

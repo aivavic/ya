@@ -16,9 +16,19 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   state: {
-    'apiUrl': 'http://backend.youniq-animation.pp.ua/api/v1',
+    'apiUrl': 'http://api.yan.yii',
     'storageUrl': 'http://backend.youniq-animation.pp.ua/storage',
-    'spinner': false
+    'spinner': false,
+    'user_state': {
+      'identity': {
+        'id': '',
+        'username': '',
+        'email': '',
+        'fullname': '',
+        'avatar': ''
+      },
+      'token': false
+    }
   },
   actions,
   getters,

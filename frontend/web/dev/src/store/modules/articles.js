@@ -3,6 +3,7 @@
  */
 import * as types from '../mutation-types'
 import axios from 'axios'
+// const qs = require('qs')
 // initial state
 const state = {
   articles: [],
@@ -20,7 +21,14 @@ const getters = {
 // actions
 const actions = {
   getAllProducts ({ commit, rootState }) {
-    axios.get(rootState.apiUrl + `/post`)
+    // var config = {
+    //   headers: {'Authorization': 'Bearer f9xur5jTWQ3YHVoKXh15dzc5U1PI9h6EjJOlGd7Tn'}
+    // }
+    console.log(axios.defaults.headers)
+    axios.defaults.headers['Authorization'] = 'Bearer f9xur5jTWQ3YHVoKXh15dzc5U1PI9h6EjJOlGd7Tn'
+    axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded'
+    // axios.defaults.headers.common['Test'] = 'test'
+    axios.get(rootState.apiUrl + `/article/test`)
       .then(response => {
         var articles = response.data
         commit(types.RECEIVE_ARTICLES, { articles })
